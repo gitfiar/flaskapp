@@ -1,0 +1,42 @@
+  {% include "base.html" %}
+
+  {% block navbar %}
+      {% include "head.html" %}
+  {% endblock navbar %}
+  {% block content %}
+  <div id="flapp">
+      {% include "title.html" %}
+      <div id="grid" class="container">
+          <div class="col-sm-12 col-md-12 col-lg-12">
+              <div class="row">
+                  <div class="section-header">
+                      <h2 class="datatitle text-center wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">Private Room Menu </h2>
+                      <hr class="line" style="width: 30%;">
+                  </div>
+              </div>
+              <div class="row animatedParent">
+                  <div class="grid-sizer"></div>
+                  <div id="items" class="gutter-sizer"></div>
+                  {%- for comment in uers -%}
+                  <div id="itemlist" class="col-md-3 animated fadeInUp go">
+                      <div class="panel panel-default">
+                          <div class="panel-thumbnail">
+                              <a class="grid__link" href="/item/{{comment.Id}}">
+                                  <img class="grid__img img-responsive" src="static/upload_file/{{comment.Thumbnail}}" alt="Some image" />
+                              </a>
+                          </div>
+                          <div class="panel-body post_text">
+                              <h4><span>{{- comment.Name -}}</span>/<span>{{comment.Job}}</span>/<span>{{comment.Hometown}}</span></h4>
+                              <p class="spec"> <b class="date">{{-comment.Job -}}</b>  <span> {{- comment.Slgon -}} </span>  </p>
+                          </div>
+                      </div>
+                  </div>
+                  {%- endfor -%} 
+              </div>
+          </div>
+      </div>
+  </div>
+  {%- endblock content %}
+{% block footer -%}
+    {% include "footer.html" %}
+{% endblock footer  %}

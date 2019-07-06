@@ -1,0 +1,11 @@
+Flask_Bootstrap==3.3.7.1
+WTForms==2.2.1
+numpy==1.16.2
+flask_appconfig==0.11.1
+Flask_SQLAlchemy==2.3.2
+Flask_Uploads==0.2.1
+PyMySQL==0.9.2
+Flask_WTF==0.14.2
+SQLAlchemy==1.2.14
+Flask==1.0.2
+Werkzeug==0.14.1

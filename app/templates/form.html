@@ -1,0 +1,22 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% import "bootstrap/utils.html" as util %}
+{%- include "base.html" %}
+
+{% block content %}
+<div class="container">
+  <form id="dropz" method="POST" action="add">
+    {{ wtf.form_field(form.Name) }}
+    {{ wtf.form_field(form.Data) }}
+    {{ wtf.form_field(form.Slgon) }}
+    {{ wtf.form_field(form.Job) }}
+    {{ wtf.form_field(form.Hometown) }}
+    {{ wtf.form_field(form.Thumbnail) }}
+    {{ wtf.form_field(form.Video) }}
+    {{ wtf.form_field(form.Pictures) }}
+    <input type="submit" value="Go">
+  </form>
+  {% include "uploadAJAX.html" %}
+</div>
+{% endblock %}
+

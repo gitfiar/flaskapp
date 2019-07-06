@@ -1,0 +1,260 @@
+
+<link rel="stylesheet" href="..{{url_for('static', filename='css/my.css')}}">
+<style type="text/css">
+#grid{
+    padding:150px 0 0 0 ;
+    background-color:#e6e6e6;
+}
+
+#flapp .container{
+  padding:0 4.4%; 
+}
+#flapp .grid-item{
+    border-color: rgba(255,255,255,0);
+    border-style: solid;
+    border-width: .2rem;
+    width: 50%;
+    box-sizing: border-box;
+}
+.grid-item h1{
+  font-size: 14px;
+  height: 20px;
+  line-height: 20px;
+  color:#2A3145;
+      padding-top: .21333333rem;
+    padding-bottom: .10666667rem;
+}
+.grid-item .spec{
+  display:block;
+  line-height:20px;
+  height: 20px;
+  border-radius: 20px;
+  font-size:14px;
+}
+.grid-item .date{
+    float:right;
+    border:1px #990033 solid;
+    color:#990033
+}
+.grid-item .post-text{
+    padding: 24px 30px 5px 30px;
+    background: #fff;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.grid__link .grid__img {
+    margin-bottom: 0px;
+}
+#headerwrap{
+    background: url('static/images/bg.jpg');
+    padding：80px 0 0 0;
+    text-align: center;
+}
+#headerwrap h1,#headerwrap h4{
+    color:#fff
+}
+#headerwrap h1{
+    color: #ffffff;
+    padding-top: 10px;
+    letter-spacing: 4px;
+    font-size: 80px;
+    font-weight: bold;
+}
+.bg{
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+}
+.panel-thumbnail{
+
+        box-shadow: 1px 4px 3px 0px #888;
+}
+
+p.spec {
+    font-size: 1em;
+    color: #939393;
+    height: 21px;
+    line-height: 22px;
+    width: auto;
+    margin-right: 10px;
+    margin-bottom:0px
+}
+
+b.date {
+    float: right;
+    border-radius: 8px;
+    background-color: #CC0033;
+    padding: 0 1em;
+    color: #fff;
+    line-height: 17px;
+}
+.post_text h4{
+    font-size:14px;
+}
+.panel-default {
+    box-shadow: 2px 4px 4px #777;
+    border-radius: 8px;
+    margin:0 15px 64px 15px;
+}
+
+#nav {
+    width: 100%;
+    position: static;
+    top: -32px;
+}
+.navbar-custom {
+    background-color: #2e2e2e;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-width: 0;
+        min-height: 60px;
+    padding: 8px 0;
+    
+}
+#nav.affix {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    -webkit-transition: all .6s ease-in-out;
+}
+.bgbox{
+    width:100%;
+    height: 400px;
+    overflow:hidden;
+    position: absolute;
+    z-index: 0;
+}
+.navbar-toggle{
+padding:0px;
+    position: absolute;
+    right: 8px;
+    top: 12px;
+}
+.display-4{
+font-size:2rem;
+font-weight:800;
+color:#cc0033
+}
+.navbar-brand{
+padding:0px;
+line-height:60px;
+    margin-left: 18px;
+}
+.section-header .section-title {
+    font-size: 44px;
+    color: #272727;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 20px;
+    margin: 0 0 20px;
+}
+.section-header .section-title:before {
+    content: "";
+    position: absolute;
+    width: 140px;
+    bottom: 0;
+    left: 50%;
+    margin-left: -70px;
+    height: 1px;
+    background: #ebebeb;
+}
+.section-header .section-title:after {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    bottom: -11px;
+    left: 50%;
+    margin-left: -12px;
+    border: 5px solid #fff;
+    border-radius: 20px;
+    background: #45aed6;
+}
+
+ .section-header{
+     margin:56px 0
+ }
+ .vid-wrap{
+    width:100%;background: #000;
+    position:relative;
+    padding-bottom:56.25%;    /*需要用padding来维持16:9比例,也就是9除以16*/
+    height: 0;
+}
+.vid-wrap video{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%
+
+}
+.img-responsive{
+border-radius:24px;
+margin-bottom:36px;
+}
+#headerwrap{
+padding-top:120px
+}
+.datatitle{
+    margin-top: 10px;
+    font-size: 48px;
+    font-weight: 600;
+    color: #555;
+    line-height: 62px;
+    text-transform: uppercase;
+    margin-bottom:48px;
+font-family: 'Rubik', sans-serif;
+}
+#flapp .line{  
+    background-color:#CC0033;
+    color: #CC0033;
+    align: center;
+    height: 2px;
+    margin: 8px auto;
+    
+
+}
+.centered h4{
+    font-family: 'Ruda', sans-serif;
+    font-weight: 900;
+    color: #333;
+    margin:10px 0
+}
+.centered p {
+line-height: 28px;
+    margin-bottom: 25px;
+}
+.panel-body{
+padding:30px 20px 20px 20px
+}
+</style>
+<section class="menu cid-qv1frvgcz3">
+ <div class=" navbar-custom navbar-inverse navbar-static-top affix" id="nav">
+    <div class="container">
+        <div class="row">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <div class="menu-logo">
+                <div class="navbar-brand">
+                    
+                    <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="https://mobirise.com/bootstrap-template/">
+                       LIST OF GRILS</a></span>
+                </div>
+            </div>
+                  <div class="navbar-collapse collapse" style="height: 1px;">
+                <ul class="nav navbar-nav nav-justified">
+                    <li class=""><a href="/">Home菜单</a></li>
+                    <li class=""><a href="/">New新菜</a></li>
+                    <li class=""><a href="/faq">Other关于</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div><!--/.container -->
+ </div>   
+</section>

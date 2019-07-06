@@ -1,0 +1,328 @@
+{%- extends "base.html" %}
+
+
+
+{% block content %}
+<script>
+      $( function(){
+
+      var $grid = $('#grid').masonry({
+        // init with no items
+        itemSelector: 'NONE',
+        percentPosition: true,
+        columnWidth: '.grid-sizer',
+        gutter: '.gutter-sizer'
+      });
+
+      // reset itemSelector to load grid-item
+      $grid.masonry( 'option', {
+        itemSelector: '.grid-item',
+      })
+      
+      $grid.masonryImagesReveal( $('#grid').find('.grid-item') );
+
+    });
+
+    $.fn.masonryImagesReveal = function( $items ) {
+      var msnry = this.data('masonry');
+      var itemSelector = msnry.options.itemSelector;
+      // hide by default
+      $items.hide();
+      // append to container
+      this.append( $items );
+      $items.imagesLoaded().progress( function( imgLoad, image ) {
+        // get item
+        // image is imagesLoaded class, not <img>, <img> is image.img
+        var $item = $( image.img ).parents( itemSelector );
+        // un-hide item
+       $item.show();
+        // masonry does its thing
+        msnry.appended( $item );
+      });
+      
+      return this;
+    };
+
+</script>
+<div class="container">
+    <div id="my-gallery-container">
+ <h1>Masonry + imagesLoaded, iteratively reveal items</h1>
+<div id="grid">
+  
+          <div class="grid-sizer"></div>
+        <div class="gutter-sizer"></div>
+  
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x400" alt="" height="400">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x103" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x104" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x105" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x106" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x107" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x108" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x109" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x110" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x111" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x112" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x113" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x114" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x115" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x116" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x117" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x118" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x119" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x120" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x121" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x122" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x123" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x124" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x125" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x126" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x127" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x128" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x129" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x130" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x131" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x132" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x133" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x134" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x135" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x136" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x137" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x138" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x139" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x140" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x141" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x142" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x143" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x144" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x145" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x146" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x147" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x148" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x149" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x150" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x151" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x152" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x153" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x154" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x155" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x156" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x157" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x158" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x159" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x160" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x161" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x162" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x163" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x164" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x165" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x166" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x167" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x168" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x169" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x170" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x171" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x172" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x173" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x174" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x175" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x176" alt="">
+        </div>
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x177" alt="">
+        </div>
+
+
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x178" alt="">
+        </div>
+
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x179" alt="">
+        </div>
+
+        <div class="grid-item">
+          <img src="https://via.placeholder.com/100x180" alt="">
+        </div>
+
+</div>  
+      </div>
+</div> 
+                {% for comment in uers %}
+        <li>{{ comment }}</li>
+    {% endfor %} 
+        <script type="text/javascript" >
+       jQuery(document).ready(function ( $ ) {
+  $("#my-gallery-container").mpmansory(
+    {
+      childrenClass: '', // default is a div
+      columnClasses: '', //add classes to items
+      breakpoints:{
+        lg: 3, 
+        md: 4, 
+        sm: 6,
+        xs: 36
+      },
+      distributeBy: { order: false, height: false, attr: 'data-order', attrOrder: 'asc' }, 
+      onload: function (items) {
+        //make somthing with items
+      } 
+    }
+  );
+});                  
+        </script> 
+        <p>Congratulations, {{first_name}}!</p>
+        <p>You have successfully linked your Moves app and entered with W+K Cycle challenge! Keep cycling, running, and walking with your Moves app, and you have a chance to win gift cards to local bike stores each month.</p> 
+        <p>View <a href='/leaderboard'>leaderboard</a> to see current ranking.</p>
+        <p>You can now safely <a href='/logout'>logout</a>.</p>
+ 
+{%- endblock %}
