@@ -16,7 +16,7 @@
     {%- endblock styles %}
     {%- endblock head %}
   </head>
-  <body{% block body_attribs %}{% endblock body_attribs %}>
+  <body class="loading"{% block body_attribs %}{% endblock body_attribs %}>
     {% block body -%}
     {% block navbar %}
     {%- endblock navbar %}
@@ -25,10 +25,12 @@
     {% block footer -%}
     {%-  endblock footer %}
     {% block scripts %}
-    <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
-    <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
     {%- endblock scripts %}
     {%- endblock body %}
+<div id="fakeloader">
+    
+</div>
+
   </body>
 {%- endblock html %}
 </html>

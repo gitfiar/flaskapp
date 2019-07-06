@@ -62,6 +62,15 @@ def index():
     return render_template('index.html',dirpath=app.config['UPLOAD_FOLDER'],link=l  ,uers=mo)
 
 
+@views.route('/new', methods=['GET', 'POST'])
+def new():
+    dirpath=path.abspath(path.dirname(__file__))
+    mo =Models.query.order_by(Models.Id.desc()).all()
+    l='#items'
+    return render_template('new.html',dirpath=app.config['UPLOAD_FOLDER'],link=l  ,uers=mo)
+
+
+
 
 @views.route('/add', methods=['GET', 'POST'])
 def add():
