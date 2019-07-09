@@ -12,7 +12,6 @@ def create_app(configfile=None):
     # in detail inside the Flask docs:
     # http://flask.pocoo.org/docs/patterns/appfactories/
     app = Flask(__name__)
-    
     # We use Flask-Appconfig here, but this is not a requirement
     AppConfig(app)
 

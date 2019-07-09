@@ -5,7 +5,8 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://root:@localhost:3306/flaskrbac?charset=utf8'
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     SQLALCHEMY_COMMIT_TEARDOWN = True
-
+    ENV= 'development'
+    DEBUG = True
     BOOTSTRAP_SERVE_LOCAL  = True
     SECRET_KEY  = 'any secret string'
     UPLOADED_CSVFILES_DEST  = '/var/uploads'

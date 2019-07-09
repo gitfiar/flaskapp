@@ -1,0 +1,111 @@
+{% from 'bootstrap/form.html' import render_form, render_field, render_form_row %}
+  {% include "base.html" %}
+
+  {% block navbar %}
+      {% include "head.html" %}
+  {% endblock navbar %}
+  {% block content %}
+  <style type="text/css" media="all">
+
+.mbr-overlay,.bgcorl,.formbox {
+    position: absolute;
+    width: 100%;
+    display: block;
+    height: 500px;
+    top:0;
+    left:0
+}
+.mbr-overlay{
+background-image:url("..{{url_for('static', filename='images/bga.jpg')}} ");
+z-index:1;
+background-position:50% 50%;
+
+}
+.bgcorl{
+z-index:2
+}
+.formbox{
+z-index:3
+}
+.formbox {
+    padding: 20px;
+}
+
+.formbox .container {
+    padding: 20px;
+}
+
+#flapp .row {
+    padding: 25px;
+}
+.w100 {
+  width:100%
+}
+.box{
+background-color:white;
+ border-radius: 5px;
+
+
+}
+
+  </style>
+  <div id="flapp" style="height:500px">
+
+      <div class="mbr-overlay bg" style="opacity: 0.7;"></div>
+      <div class="bgcorl"></div>
+      <div class="formbox">
+          <div class="container box">
+              <div class="row">
+                  <h1>{{ user_ip }}</h1>
+                  <h1>render_field</h1>
+                  <form method="post" class='w100'>
+                  {{ form.csrf_token }}
+                  {{ render_field(form.toNumber) }} 
+                  <button class="btn col-xs-6  btn-secondary w100" id="sub" type="submit">点击发送验证码</button>
+                  {{ render_field(form.smsCode) }}
+                  {{ render_field(form.submit) }}
+                  </form>
+
+              </div>
+          </div>
+      </div>
+</div>
+{% endblock %}
+
+{% block footer -%}
+    {% include "footer.html" %}
+{% endblock footer  %}
+<script src="..{{url_for('static', filename='js/jquery.cookie.js')}}" ></script>
+
+<script>
+    $(function() {
+        $('#smsCode').parent().hide()
+        $('#submit').hide()
+        $('#sub').click(function() {
+            var num = $('#toNumber').val()
+            $.ajax({url:"/sendcode", data:{"toNumber": num},success:function(data){
+                if(data.result==0){
+                    $.cookie('mId',data.mId);
+                    $('#smsCode').parent().show();
+                    $("#submit").show();
+                    $('#sub').text('发送成功，收不到短信点击重新获取'); 
+                }
+                alert(data);
+            }});
+        });
+
+        $("#submit").click(function(){
+            var num = $("#toNumber").val();
+            var smsCode=$("#smsCode").val();
+            var mId=$.cookie('mId');
+            $.ajax({url:"/checkcode", data:{"toNumber": num,"mId":mId,"smsCode":smsCode},success:function(data){
+                if(data.result==1){
+                    window.location.href='/';
+                } 
+            }});
+
+        })
+
+    });
+</script>
+

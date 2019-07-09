@@ -1,14 +1,15 @@
 ##!/bin/python 
 #coding:utf-8 -*- coding: utf-8 -*-
-from flask import Blueprint, render_template, flash, redirect, url_for, request, send_from_directory, jsonify, Response
+from flask import Blueprint, render_template, session,  flash, redirect, url_for, request, send_from_directory, jsonify, Response
 from flask import Flask
 from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import TextField, HiddenField, ValidationError, RadioField,\
     StringField, BooleanField, SubmitField, IntegerField, FormField, SelectField	
-from wtforms.validators import Required, DataRequired
+from wtforms.validators import Required, DataRequired, Length, Regexp
 from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 import os
+import re
 #  from db import Users
 from flask_bootstrap import Bootstrap
 #  from models import db, Models
@@ -18,7 +19,8 @@ from werkzeug import secure_filename
 from app.models import db, Models
 from sqlalchemy import not_
 from numpy import *
-
+from wtforms.validators import Length,DataRequired
+from app.sms import Sms
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] ='mysql://root:123456@localhost:3306/flask'
 app.config['UPLOADED_PHOTOS_DEST'] = os.getcwd() + '/upload_file/'
@@ -26,6 +28,13 @@ app.config['UPLOADED_IMAGES_DEST']= os.getcwd()+'/upload_file/'
 UPLOAD_FOLDER =  os.getcwd() + '/upload_file/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+class LoginForm(FlaskForm):
+    toNumber = StringField(u"手机号码",validators=[Regexp('^[1][3-8][0-9]{9}$',flags=re.I,message=u"请输入正确手机号码")])
+ 
+    smsCode =  TextField(u"验证码", validators=[Required()])
+
+    subBtn = SubmitField(u"获取验证码", validators=[Required()])
+    submit = SubmitField(u"注册", validators=[Required()])
 
 #  db=SQLAlchemy(app)
 #  db.create_all()
@@ -52,6 +61,52 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPE
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+
+
+@views.route('/login', methods=['GET', 'POST'])
+def login():
+    resp = Response("服务器返回信息")
+    #设置cookie，
+    ip = request.remote_addr
+    form = LoginForm()
+    return render_template('login.html',user_ip=ip,form=form)
+
+@views.route('/checkcode', methods=['GET', 'POST'])
+def checkCode():
+        aNum = request.args.get('toNumber')
+        aCode = request.args.get('smsCode')
+        mid = request.args.get('mId')
+        print "ate ：：：%s : %s : %s" %(aNum , aCode ,mid)
+        #  num c = request.form['toNumber']
+        client = Sms(aNum)
+        bCode = client.getHisCode(mid)
+        bNum = int(mid)-bCode
+        print 'bte::::::%s : %s' %(bNum ,bCode)
+        if int(aNum) == bNum and int(aCode) == bCode :
+            session['login'] = 1
+            return session
+            print u"验证成功"
+            return jsonify({"result":1})
+        else:
+            print u"验证失败"
+            return redirect(url_for("login"))
+
+
+@views.route('/sendcode', methods=['GET', 'POST'])
+def sendCode():
+        num = request.args.get('toNumber')
+        #  num c = request.form['toNumber']
+        print num
+        client = Sms(num)
+        client.randomCode()
+        res = client.send()
+        print res
+        success= res['code']
+        mId=client.messageId if res['code']==0 else ''
+        return jsonify({"result":success,'mId':mId})
+
+
 
 
 @views.route('/', methods=['GET', 'POST'])
