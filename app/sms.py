@@ -5,9 +5,6 @@ import urllib2
 import pprint
 import json
 import sys
-from Cryptodome.Cipher import AES
-from Cryptodome import Random
-from binascii import b2a_hex  
 import random
 
 reload(sys) # Python2.5 初始化后会删除 sys.setdefaultencoding 这个方法，我们需要重新载入
