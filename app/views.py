@@ -111,10 +111,14 @@ def sendCode():
 
 @views.route('/', methods=['GET', 'POST'])
 def index():
-    dirpath=path.abspath(path.dirname(__file__))
-    mo =Models.query.order_by(Models.Id.desc()).all()
-    l='#items'
-    return render_template('index.html',dirpath=app.config['UPLOAD_FOLDER'],link=l  ,uers=mo)
+    if not "status" in session:
+        
+         return redirect(url_for('/login'))
+    else:
+        dirpath=path.abspath(path.dirname(__file__))
+        mo =Models.query.order_by(Models.Id.desc()).all()
+        l='#items'
+        return render_template('index.html',dirpath=app.config['UPLOAD_FOLDER'],link=l  ,uers=mo)
 
 
 @views.route('/new', methods=['GET', 'POST'])
@@ -195,7 +199,11 @@ def item(user_id):
         return render_template('item.html',link=l, commit=result)
     else:
         return redirect(url_for('err'))
-@views.route('/faq')
+@views.route('/faq/')
 def faq():
     l='/'
     return render_template('faq.html', link=l)
+
+
+with app.test_request_context():
+    print(url_for('/faq/'))

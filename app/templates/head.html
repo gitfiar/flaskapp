@@ -1,20 +1,14 @@
 
 <link rel="stylesheet" href="..{{url_for('static', filename='css/my.css')}}">
 <style type="text/css">
-#flapp{
-    padding:80px 0 0 0 ;
-    background-color:#e6e6e6;
-}
 
-#flapp .container{
-  padding:0 4.4%; 
-}
 #flapp .grid-item{
     border-color: rgba(255,255,255,0);
     border-style: solid;
     border-width: .2rem;
-    width: 50%;
+    width: 80%;
     box-sizing: border-box;
+    margin:initial 5px auto
 }
 .grid-item h1{
   font-size: 14px;
@@ -99,85 +93,13 @@ b.date {
     margin:0 15px 64px 15px;
 }
 
-#nav {
-    width: 100%;
-    position: static;
-    top: -32px;
-}
-.navbar-custom {
-    background-color: #2e2e2e;
-    font-weight: 700;
-    text-transform: uppercase;
-    border-width: 0;
-        min-height: 60px;
-    padding: 8px 0;
-    
-}
-#nav.affix {
-    position: fixed;
-    top: 0;
-    z-index: 10;
-    -webkit-transition: all .6s ease-in-out;
-}
 .bgbox{
     width:100%;
     height: 400px;
     overflow:hidden;
-    position: absolute;
+    position: absolute;w3-pink
     z-index: 0;
 }
-.navbar-toggle{
-padding:0px;
-    position: absolute;
-    right: 8px;
-    top: 12px;
-}
-.display-4{
-font-size:2rem;
-font-weight:800;
-color:#cc0033
-}
-.navbar-brand{
-padding:0px;
-line-height:60px;
-    margin-left: 18px;
-}
-.section-header .section-title {
-    font-size: 44px;
-    color: #272727;
-    text-transform: uppercase;
-    position: relative;
-    padding-bottom: 20px;
-    margin: 0 0 20px;
-}
-.section-header .section-title:before {
-    content: "";
-    position: absolute;
-    width: 140px;
-    bottom: 0;
-    left: 50%;
-    margin-left: -70px;
-    height: 1px;
-    background: #ebebeb;
-}
-.section-header .section-title:after {
-    content: "";
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    bottom: -11px;
-    left: 50%;
-    margin-left: -12px;
-    border: 5px solid #fff;
-    border-radius: 20px;
-    background: #45aed6;
-}
-
- .section-header{
-     margin:56px 0;
-     padding:0 15px;
-
- }
  .vid-wrap{
     width:100%;background: #000;
     position:relative;
@@ -193,8 +115,9 @@ line-height:60px;
 
 }
 .img-responsive{
-border-radius:24px;
+border-radius:12px;
 margin-bottom:36px;
+width: 100%;
 }
 #headerwrap{
 padding-top:120px
@@ -232,31 +155,22 @@ line-height: 28px;
 padding:30px 20px 20px 20px
 }
 </style>
-<section class="menu cid-qv1frvgcz3">
- <div class=" navbar-custom navbar-inverse navbar-static-top affix" id="nav">
-    <div class="container">
-        <div class="row">
-    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <div class="menu-logo">
-                <div class="navbar-brand">
-                    
-                    <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="/">
-                       LIST OF GRILS</a></span>
-                </div>
-            </div>
-                  <div class="navbar-collapse collapse" style="height: 1px;">
-                <ul class="nav navbar-nav nav-justified">
-                    <li class=""><a href="/">Home菜单</a></li>
-                    <li class=""><a href="/new">New新菜</a></li>
-                    <li class=""><a href="/faq">Other关于</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
-        </div>
-    </div><!--/.container -->
- </div>   
-</section>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+  <a class="navbar-brand" href="#">AGentCao<em>!</em></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/">所有菜单</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="/new">新鲜菜单</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/faq">常见问题</a>
+      </li>
+    </ul>
+  </div>
+</nav>

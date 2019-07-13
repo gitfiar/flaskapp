@@ -1,8 +1,5 @@
- {% include "base.html" %}
+ {% extends "layout.html" %}
 
-  {% block navbar %}
-      {% include "head.html" %}
-  {% endblock navbar %}
   {% block content %}
   <div id="flapp">
       {% include "title.html" %}
@@ -13,11 +10,10 @@
                       <hr class="line" style="width: 30%;">
                   </div>
               </div>
-              <div class="grid row animatedParent">
-                  <div class="grid__sizer"></div>
+              <div class="row animatedParent">
                   {%- for comment in uers -%}
-                  <div class="grid__item animated fadeInUp go">
-                      <div class="grid__link panel panel-default">
+                  <div class="grid-item animated fadeInUp go">
+                      <div class="grid-link panel panel-default">
                           <div class="panel-thumbnail">
                               <a class="grid__link" href="/item/{{comment.Id}}">
                                   <img class="grid__img img-responsive" src="static/upload_file/{{comment.Thumbnail}}" alt="Some image" />
@@ -25,7 +21,7 @@
                           </div>
                           <div class="panel-body post_text">
                               <h4><span>{{- comment.Name -}}</span>/<span>{{comment.Job}}</span>/<span>{{comment.Hometown}}</span></h4>
-                              <p class="spec"> <b class="date">{{-comment.Job -}}</b>  <span> {{- comment.Slgon -}} </span>  </p>
+                              <p class="spec"> <b class="date w3-pink">{{-comment.Job -}}</b>  <span> {{- comment.Slgon -}} </span>  </p>
                           </div>
                       </div>
                   </div>
@@ -33,20 +29,4 @@
               </div>
           </div>
   </div>
-
-  {%- endblock content %}
-{% block footer -%}
-    {% include "footer.html" %}
-{% endblock footer  %}
-  <script>
-      $(function() {
-          var $grid = $('.grid').imagesLoaded( function() {
-              $grid.masonry({
-                  itemSelector: '.grid__item',
-                  percentPosition: true,
-                  columnWidth: '.grid__sizer'
-              }); 
-          });
-      })
-  </script>
-
+   {%- endblock content %}

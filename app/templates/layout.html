@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html{% block html_attribs %}{% endblock html_attribs %}>
+{%- block html %}
+  <head>
+    {%- block head %}
+    <title>{% block title %}{{title|default}}{% endblock title %}</title>
+
+    {%- block metas %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    {%- endblock metas %}
+
+    {% block styles -%}
+        <link rel="stylesheet" type="text/css" href="..{{url_for('static', filename='css/dropzone.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="..{{url_for('static', filename='css/bootstrap.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="..{{url_for('static', filename='css/bootstrap.css')}}">
+        <link rel="stylesheet" type="text/css" href="..{{url_for('static', filename='css/font-awesome.min.css')}}"> 
+        <link rel="stylesheet" type="text/css" href="..{{url_for('static', filename='css/bootstrap-grid.min.css')}}"> 
+        <link rel="stylesheet" type="text/css" href="..{{url_for('static', filename='css/w3.css')}}"> 
+    {%- endblock %}
+    {%- endblock head %}
+  </head>
+  <body style='overflow-x:hidden;'{% block body_attribs %}{% endblock body_attribs %}>
+    {% block body -%}
+    {% block navbar %}
+        {% include "head.html"  %}
+    {%- endblock %}
+      {% block content -%}
+      {%- endblock content %}
+    {% block footer -%}
+         {% include "footer.html"  %}
+    {%-  endblock  %}
+    {% block script %}
+        <script  src="..{{url_for('static', filename='jquery.min.js')}}" ></script>
+        <script  src="..{{url_for('static', filename='js/dropzone.js')}}" ></script>
+        <script src="..{{url_for('static', filename='js/bootstrap.min.js')}}" ></script>
+        <script  src="{{url_for('static', filename='js/my.js')}}" ></script>
+        <script src="{{url_for('static', filename='masonry.pkgd.min.js')}}" ></script>
+        <script src="..{{url_for('static', filename='js/main.js')}}" ></script>
+        <script src="..{{url_for('static', filename='js/fakeLoader.min.js')}}" ></script>
+        <script src="..{{url_for('static', filename='js/imagesloaded.pkgd.min.js')}}" ></script>
+        <script src="..{{url_for('static', filename='js/anime.min.js')}}" ></script>
+        <script src="..{{url_for('static', filename='js/jquery.cookie.js')}}" ></script>
+    {% endblock script %}
+    {%- endblock body %}
+
+  </body>
+{%- endblock html %}
+</html>

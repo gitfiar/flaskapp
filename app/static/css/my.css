@@ -18,6 +18,8 @@ body {
     font-weight: 400;
     color: #64686d;
     line-height: 26px;
+    font-family: 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
 }
 
 h1,
@@ -1144,4 +1146,12 @@ figcaption{
     background: #fff;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+a.navbar-brand {
+    line-height: 1;
+    position: relative;
+    text-indent: 0.2em;
+    letter-spacing: 0.1em;
+    font-weight: 800;
+ font-family: 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }

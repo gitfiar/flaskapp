@@ -1,11 +1,7 @@
-<!DOCTYPE html>
 
-  {% include "base.html" %}
 
-  {% block navbar %}
-      {% include "head.html" %}
-  {% endblock navbar %}
 
+ {% extends "layout.html" %}
 
 
 {% block content %}
@@ -106,7 +102,4 @@
     </div>   
 </div>
 {%- endblock content %}
-{% block footer -%}
-    {% include "footer.html" %}
-{% endblock footer  %}
 
