@@ -62,6 +62,7 @@ background-color:white;
                   {{ form.csrf_token }}
                   {{ render_field(form.toNumber) }} 
                   <button class="btn col-xs-6  btn-secondary w100" id="sub" type="submit">点击发送验证码</button>
+                  <input type="hidden" name="mId" id="mId" value="">
                   {{ render_field(form.smsCode) }}
                   {{ render_field(form.submit) }}
                   </form>
@@ -86,9 +87,11 @@ background-color:white;
             $.ajax({url:"/sendcode", data:{"toNumber": num},success:function(data){
                 if(data.result==0){
                     $.cookie('mId',data.mId);
+                    $("#mId").val(data.mId);
                     $('#smsCode').parent().show();
                     $("#submit").show();
-                    $('#sub').text('发送成功，收不到短信点击重新获取'); 
+                    $('#sub').text('收不到短信点击重新获取'); 
+                    alert('验证码已经发送至：'+num)
                 }
                 alert(data);
             }});
@@ -100,8 +103,13 @@ background-color:white;
             var mId=$.cookie('mId');
             $.ajax({url:"/checkcode", data:{"toNumber": num,"mId":mId,"smsCode":smsCode},success:function(data){
                 if(data.result==1){
+                    alert('验证成功')
+                    $.cookie('status','login')
                     window.location.href='/';
-                } 
+                }
+                else{
+                    alert('验证错误')
+                }
             }});
 
         })

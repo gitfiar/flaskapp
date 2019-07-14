@@ -21,12 +21,17 @@ from sqlalchemy import not_
 from numpy import *
 from wtforms.validators import Length,DataRequired
 from app.sms import Sms
+from datetime import timedelta
+from functools import wraps
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] ='mysql://root:123456@localhost:3306/flask'
 app.config['UPLOADED_PHOTOS_DEST'] = os.getcwd() + '/upload_file/'
 app.config['UPLOADED_IMAGES_DEST']= os.getcwd()+'/upload_file/'
 UPLOAD_FOLDER =  os.getcwd() + '/upload_file/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['SECRET_KEY'] = os.urandom(24)
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=2)
 
 class LoginForm(FlaskForm):
     toNumber = StringField(u"手机号码",validators=[Regexp('^[1][3-8][0-9]{9}$',flags=re.I,message=u"请输入正确手机号码")])
@@ -62,6 +67,15 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
+def is_login(func):
+    @wraps(func)
+    def check_login(*args, **kwargs):
+        cook = request.cookies.get("status")
+        if cook:
+            return func(*args, **kwargs)
+        else:
+            return redirect(url_for('.login'))
+    return check_login
 
 
 @views.route('/login', methods=['GET', 'POST'])
@@ -110,16 +124,13 @@ def sendCode():
 
 
 @views.route('/', methods=['GET', 'POST'])
+@is_login
 def index():
-    if not "status" in session:
-        
-         return redirect(url_for('/login'))
-    else:
         dirpath=path.abspath(path.dirname(__file__))
         mo =Models.query.order_by(Models.Id.desc()).all()
         l='#items'
         return render_template('index.html',dirpath=app.config['UPLOAD_FOLDER'],link=l  ,uers=mo)
-
+        #return redirect(url_for('.login'))
 
 @views.route('/new', methods=['GET', 'POST'])
 def new():
@@ -205,5 +216,3 @@ def faq():
     return render_template('faq.html', link=l)
 
 
-with app.test_request_context():
-    print(url_for('/faq/'))
