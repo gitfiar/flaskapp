@@ -3,6 +3,10 @@
 
  {% extends "layout.html" %}
 
+  {% block title %}
+  {{ commit.Name  }}|{{ commit.Job }}
+  {% endblock  %}
+
 
 {% block content %}
  <style type="text/css">
@@ -78,7 +82,6 @@
     <div class="row">
         <div class="col-sm-4 col-xs-6 team-column col-md-3">
             <div class="team-member wow fadeInUp animated">
-
                 <div class="vid-wrap"> 
                       <video id="myVideo" controls="" loop="">
                         <source src="../static/upload_file/{{ commit.Video }}" type="video/mp4">
@@ -92,11 +95,11 @@
                         <p class="datatext text-center">{{commit.Slgon}}<br/>  {{commit.Data}}</p>
                     </div>
                 </div>
-               {% for item in commit.getPicArr() %}
-                    <div class="team-img">
+                <div class="team-img">
+                    {% for item in commit.getPicArr() %}
                         <img class="img-responsive" src="../static/upload_file/{{item}}" alt="Some image" />
-                    </div> 
-                {% endfor %} 
+                    {% endfor %} 
+                </div> 
             </div>
         </div>
     </div>   
