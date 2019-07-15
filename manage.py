@@ -63,7 +63,7 @@ manager.add_command('runserver', GunicornServer())
 # 設定 python manage.py shell 為啟動互動式指令 shell 的指令 
 @manager.shell
 def make_shell_context():
-    return dict(app=app)
+    return dict(app=app,db=db,Models=Models)
 
 if __name__ == '__main__':
     manager.run()

@@ -45,5 +45,8 @@ class Models(db.Model):
         return '<Models %r>' % self.Name
 
 db.create_all()
-
-
+#  if __name__ =='__main__' :
+    #  user_role = Models.query.filter_by(Id='14').first()
+    #  db.session.delete(user_role)
+    #  db.session.commit
+    #  print( user_role.Hometown)
