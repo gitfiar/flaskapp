@@ -98,8 +98,6 @@ def checkCode():
         bNum = int(mid)-bCode
         print 'bte::::::%s : %s' %(bNum ,bCode)
         if int(aNum) == bNum and int(aCode) == bCode :
-            session['login'] = 1
-            return session
             print u"验证成功"
             return jsonify({"result":1})
         else:
@@ -124,7 +122,7 @@ def sendCode():
 
 
 @views.route('/', methods=['GET', 'POST'])
-@is_login
+#  @is_login
 def index():
         dirpath=path.abspath(path.dirname(__file__))
         mo =Models.query.order_by(Models.Id.desc()).all()

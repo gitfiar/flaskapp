@@ -530,9 +530,10 @@
 			ctrl.addEventListener('click', switchGrid);
 		});
 		// Effect selection.
-		fxCtrls.forEach(function(ctrl) {
-			ctrl.addEventListener('click', applyFx);
-		});
+		// fxCtrls.forEach(function(ctrl) {
+			// ctrl.addEventListener('click', applyFx);
+		// });
+        body.addEventListener('load',applyFx)
 	}
 
 	function switchGrid(ev) {
@@ -554,9 +555,8 @@
 
 		loadingTimeout = setTimeout(function() {
 			grids[currentGrid].classList.remove('grid--loading');
-
 			// Apply effect.
-			loaders[currentGrid]._render(ev.target.getAttribute('data-fx'));
+			loaders[currentGrid]._render('Hapi');
 		}, 500);
 	}
 

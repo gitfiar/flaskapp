@@ -2,21 +2,61 @@
 <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-bottom">
   <div class="container">
       
-    <div class="d-flex w-100 justify-content-around w3-text-white">
-        <div class="p-2 w3-xxlarge"><i class="fa fa-home"></i></div>
-        <div class="p-2 w3-xxlarge"><i class="fa fa-bars"></i></div>
-        <div class="p-2 w3-xxlarge"><i class="fa fa-arrow-right"></i></div>
+    <div class="control--effects d-flex w-100 justify-content-around w3-text-white">
+        <div class="p-2 w3-xxlarge control__btn" data-fx="Amun"><i class="fa fa-home"></i></div>
+        <div class="p-2 w3-xxlarge control__btn" data-fx="Amun"><i class="fa fa-bars"></i></div>
+        <div class="p-2 w3-xxlarge control__btn" data-fx="Amun"><i class="fa fa-arrow-right"></i></div>
     </div>
       </div>
 </nav>
 <script src="..{{url_for('static', filename='jquery.min.js')}}" ></script>
-<script src="..{{url_for('static', filename='js/dropzone.js')}}" ></script>
 <script src="..{{url_for('static', filename='js/bootstrap.min.js')}}" ></script>
-
-<script src="{{url_for('static', filename='js/my.js')}}" ></script>
-<script src="{{url_for('static', filename='masonry.pkgd.min.js')}}" ></script>
-<script src="..{{url_for('static', filename='js/main.js')}}" ></script>
+<script src="..{{url_for('static', filename='js/dropzone.js')}}" ></script>
 <script src="..{{url_for('static', filename='js/fakeLoader.min.js')}}" ></script>
 <script src="..{{url_for('static', filename='js/imagesloaded.pkgd.min.js')}}" ></script>
+<script src="..{{url_for('static', filename='js/masonry.pkgd.min.js')}}" ></script>
 <script src="..{{url_for('static', filename='js/anime.min.js')}}" ></script>
+<script src="..{{url_for('static', filename='js/main.js')}}" ></script>
+<script src="..{{url_for('static', filename='js/lazyload.js')}}" ></script>
+
 </div>
+
+<script>
+    $(function() {
+    
+             $('#smsCode').parent().hide()
+        $('#submit').hide()
+        $('#sub').click(function() {
+            var num = $('#toNumber').val()
+            $.ajax({url:"/sendcode", data:{"toNumber": num},success:function(data){
+                if(data.result==0){
+                    $.cookie('mId',data.mId);
+                    $("#mId").val(data.mId);
+                    $('#smsCode').parent().show();
+                    $("#submit").show();
+                    $('#sub').text('收不到短信点击重新获取'); 
+                    alert('验证码已经发送至：'+num)
+                }
+                alert(data);
+            }});
+        });
+
+        $("#submit").click(function(){
+            var num = $("#toNumber").val();
+            var smsCode=$("#smsCode").val();
+            var mId=$.cookie('mId');
+            $.ajax({url:"/checkcode", data:{"toNumber": num,"mId":mId,"smsCode":smsCode},success:function(data){
+                if(data.result==1){
+                    alert('验证成功')
+                    $.cookie('status','login')
+                    window.location.href='/';
+                }
+                else{
+                    alert('验证错误')
+                }
+            }});
+
+        })
+
+    });
+</script>

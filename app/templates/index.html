@@ -1,5 +1,7 @@
   {% extends "layout.html" %}
-
+  {% block title %}
+  首页
+  {% endblock  %}
 
   {% block content %}
   <div id="flapp">
@@ -10,7 +12,7 @@
               <div class="row">
                   <div class="section-header">
                       <h2 class="datatitle text-center wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">Private Room Menu </h2>
-                      <hr class="line" style="width: 30%;">
+                      <hr class="line" style="width: 40%;">
                   </div>
               </div>
               <div class="grid row animatedParent" style="padding:0">
@@ -18,7 +20,7 @@
                   {%- for comment in uers -%}
                   <div class="grid__item">
                           <a class="grid__link" href="/item/{{comment.Id}}">
-                              <img class="grid__img" src="static/upload_file/{{comment.Thumbnail}}" alt="{{- comment.Name -}}/{{comment.Job}}/{{comment.Hometown}}" />
+                              <img class="grid__img " src="static/upload_file/{{comment.Thumbnail}}" alt="{{- comment.Name -}}/{{comment.Job}}/{{comment.Hometown}}" />
                           </a>
                   </div>
                   {%- endfor -%} 
@@ -27,16 +29,4 @@
   </div>
 
   {%- endblock content %}
-
- <script>
-      $(function() {
-          var $grid = $('.grid').imagesLoaded( function() {
-              $grid.masonry({
-                  itemSelector: '.grid__item',
-                  percentPosition: true,
-                  columnWidth: '.grid__sizer'
-              }); 
-          });
-      })
-  </script>
 
