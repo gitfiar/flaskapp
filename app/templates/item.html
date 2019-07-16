@@ -77,6 +77,15 @@
         line-height: 30px;
         text-align: center;
     }
+    .team-img{
+    padding-top:80px;
+    background-color:#e8e8e8;
+    }
+    .img-responsive {
+    width: 80%;
+    margin: 50px auto;
+    display: block;
+    }
   </style>
 <div id="flapp">
     <div class="row">
@@ -97,7 +106,7 @@
                 </div>
                 <div class="team-img">
                     {% for item in commit.getPicArr() %}
-                        <img class="img-responsive" src="../static/upload_file/{{item}}" alt="Some image" />
+                        <img class="img-responsive lazy-load" data-original="../static/upload_file/{{item}}" alt="Some image" />
                     {% endfor %} 
                 </div> 
             </div>

@@ -2,19 +2,17 @@
   {% block title %}
   最新菜单
   {% endblock  %}
-
-
   {% block content %}
   <div id="flapp">
       {% include "title.html" %}
           <div class="col-sm-12 col-md-12 col-lg-12">
               <div class="row">
-                  <div class="section-header">
-                      <h2 class="datatitle text-center wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">Private Room Menu </h2>
+                  <div class="section-header" style="margin-top:0px">
+                      <h2 class="datatitle text-center wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">WHAt'S THE NEWS </h2>
                       <hr class="line" style="width: 30%;">
                   </div>
               </div>
-              <div class="row animatedParent">
+              <div class="row animatedParent" style="background-color:#e5e5e5;padding-top:60px">
                   {%- for comment in uers -%}
                   <div class="grid-item animated fadeInUp go">
                       <div class="grid-link panel panel-default">
