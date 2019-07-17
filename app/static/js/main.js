@@ -529,11 +529,31 @@
 		switchGridCtrls.forEach(function(ctrl) {
 			ctrl.addEventListener('click', switchGrid);
 		});
+        
 		// Effect selection.
-		// fxCtrls.forEach(function(ctrl) {
-			// ctrl.addEventListener('click', applyFx);
-		// });
-        body.addEventListener('load',applyFx)
+        $(window).bind('scroll', function(event) {
+            const slideAt = $(this).height() + $(this).scrollTop() - $(".grid").height() / 2;
+            // 图片底部距文档顶部的距离
+            const imageBottom = $(".grid").offset().top + $(".grid").height();
+            // 图片是否已经显示了一半
+            const isHalfShown = slideAt > $(".grid").offset().top;
+            // 图片是否已经被完全滚动出去
+            const isNotScrolledPast = $(this).scrollTop() < imageBottom;
+                if (isHalfShown && isNotScrolledPast){	
+                    clearTimeout(loadingTimeout);
+                    grids[currentGrid].classList.add('grid--loading');
+                    loadingTimeout = setTimeout(function() {
+                        grids[currentGrid].classList.remove('grid--loading');
+                        // Apply effect.
+                        loaders[currentGrid]._render('Hapi');
+                    }, 500);
+                   $(this).unbind('scroll');
+
+                }
+
+
+
+        });	
 	}
 
 	function switchGrid(ev) {
@@ -541,7 +561,7 @@
 		grids[currentGrid].classList.add('grid--hidden');
 		// New grid.
 		var grid = grids.filter(function(obj) { return obj.classList.contains(ev.target.value); })[0];
-		// Update currentGrid.
+		// Update'ste currentGrid.
 		currentGrid = grids.indexOf(grid);
 		// Show new grid.
 		grid.classList.remove('grid--hidden');
@@ -550,14 +570,18 @@
 
 	function applyFx(ev) {
 		// Simulate loading grid to show the effect.
-		clearTimeout(loadingTimeout);
-		grids[currentGrid].classList.add('grid--loading');
-
-		loadingTimeout = setTimeout(function() {
-			grids[currentGrid].classList.remove('grid--loading');
-			// Apply effect.
-			loaders[currentGrid]._render('Hapi');
-		}, 500);
+        $(window).scroll(function(){
+            // 当滚动到最底部以上100像素时， 加载新内容
+            if ($(document).height() - $(this).scrollTop() - $(this).height()<50){	
+                clearTimeout(loadingTimeout);
+                grids[currentGrid].classList.add('grid--loading');
+                loadingTimeout = setTimeout(function() {
+                    grids[currentGrid].classList.remove('grid--loading');
+                    // Apply effect.
+                    loaders[currentGrid]._render('Satet');
+                }, 500);
+            }
+        });	
 	}
 
 	init();
