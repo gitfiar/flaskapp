@@ -531,29 +531,25 @@
 		});
         
 		// Effect selection.
-        $(window).bind('scroll', function(event) {
-            const slideAt = $(this).height() + $(this).scrollTop() - $(".grid").height() / 2;
-            // 图片底部距文档顶部的距离
-            const imageBottom = $(".grid").offset().top + $(".grid").height();
-            // 图片是否已经显示了一半
-            const isHalfShown = slideAt > $(".grid").offset().top;
-            // 图片是否已经被完全滚动出去
-            const isNotScrolledPast = $(this).scrollTop() < imageBottom;
-                if (isHalfShown && isNotScrolledPast){	
-                    clearTimeout(loadingTimeout);
-                    grids[currentGrid].classList.add('grid--loading');
-                    loadingTimeout = setTimeout(function() {
-                        grids[currentGrid].classList.remove('grid--loading');
-                        // Apply effect.
-                        loaders[currentGrid]._render('Hapi');
-                    }, 500);
-                   $(this).unbind('scroll');
-
-                }
-
-
-
-        });	
+        // $(window).bind('scroll', function(event) {
+            // const slideAt = $(this).height() + $(this).scrollTop() - $(".grid").height() / 2;
+        //  图片底部距文档顶部的距离
+            // const imageBottom = $(".grid").offset().top + $(".grid").height();
+        //  图片是否已经显示了一半
+            // const isHalfShown = slideAt > $(".grid").offset().top;
+        //     图片是否已经被完全滚动出去
+            // const isNotScrolledPast = $(this).scrollTop() < imageBottom;
+                // if (isHalfShown && isNotScrolledPast){
+                    // clearTimeout(loadingTimeout);
+                    // grids[currentGrid].classList.add('grid--loading');
+                    // loadingTimeout = setTimeout(function() {
+                        // grids[currentGrid].classList.remove('grid--loading');
+        //              Apply effect.
+                        // loaders[currentGrid]._render('Hapi');
+                    // }, 500);
+                   // $(this).unbind('scroll');
+                // }
+        // });
 	}
 
 	function switchGrid(ev) {

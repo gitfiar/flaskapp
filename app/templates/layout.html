@@ -18,10 +18,12 @@
         <link rel="stylesheet" type="text/css" href="..{{url_for('static', filename='css/w3.css')}}"> 
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <link rel="stylesheet" type="text/css" href="..{{url_for('static', filename='css/animate.min.css')}}"> 
+       <link rel="stylesheet" type="text/css" href="..{{url_for('static', filename='css/animate.css')}}"> 
+
     {%- endblock %}
     {%- endblock head %}
   </head>
-  <body style='overflow-x:hidden;'{% block body_attribs %}{% endblock body_attribs %}>
+  <body class="loading" style='overflow-x:hidden;'{% block body_attribs %}{% endblock body_attribs %}>
     {% block body -%}
     {% block navbar %}
         {% include "head.html"  %}

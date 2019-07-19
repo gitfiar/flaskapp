@@ -11,16 +11,17 @@
           <div class="container">
               <div class="row">
                   <div class="section-header">
-                      <h2 class="datatitle text-center wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">Private Room Menu </h2>
-                      <hr class="line" style="width: 40%;">
+                      <h2 class="datatitle text-center wow fadeInDown animated">Private Room Menu </h2>
+                      <hr class="line w3-border-0" style="width: 60%;">
                   </div>
               </div>
               <div class="grid row" style="padding:0">
                   <div class="grid__sizer"></div>
-                  {%- for comment in uers -%}
-                  <div class="grid__item">
+                    {%- for comment in uers -%}
+
+                         <div class="grid__item">
                           <a class="grid__link" href="/item/{{comment.Id}}">
-                              <img class="grid__img " src="static/upload_file/{{comment.Thumbnail}}" alt="{{- comment.Name -}}/{{comment.Job}}/{{comment.Hometown}}" />
+                              <img class="grid__img wow fadeInLeft animated" data-wow-delay="0.8s" src="static/upload_file/{{comment.Thumbnail}}" alt="{{- comment.Name -}}/{{comment.Job}}/{{comment.Hometown}}" />
                           </a>
                   </div>
                   {%- endfor -%} 

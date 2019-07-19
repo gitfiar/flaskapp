@@ -90,23 +90,23 @@
 <div id="flapp">
     <div class="row">
         <div class="col-sm-4 col-xs-6 team-column col-md-3">
-            <div class="team-member wow fadeInUp animated">
-                <div class="vid-wrap"> 
+            <div class="team-member">
+                <div class="vid-wrap  wow fadeInUp"> 
                       <video id="myVideo" controls="" loop="">
                         <source src="../static/upload_file/{{ commit.Video }}" type="video/mp4">
                       </video>
                 </div>           
                 <div class="team-info">
                     <div class="section-header">
-                        <h2 class="datatitle text-center wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">Detailed information on </h2>
+                        <h2 class="datatitle text-center wow fadeInDown">Detailed information on </h2>
                         <hr class="line" style="width: 30%;">
-                        <h3 class="datasub text-center wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;"><span>{{- commit.Name -}}</span>/<span>{{commit.Job}}</span>/<span>{{commit.Hometown}}</sapn></h3>
-                        <p class="datatext text-center">{{commit.Slgon}}<br/>  {{commit.Data}}</p>
+                        <h3 class="datasub text-center wow fadeInDown"><span>{{- commit.Name -}}</span>/<span>{{commit.Job}}</span>/<span>{{commit.Hometown}}</sapn></h3>
+                        <p class="datatext text-center wow fadeInUp">{{commit.Slgon}}<br/>  {{commit.Data}}</p>
                     </div>
                 </div>
                 <div class="team-img">
                     {% for item in commit.getPicArr() %}
-                        <img class="img-responsive lazy-load" data-original="../static/upload_file/{{item}}" alt="Some image" />
+                        <img class="img-responsive  wow fadeInUp animated" src="../static/upload_file/{{item}}" alt="Some image" />
                     {% endfor %} 
                 </div> 
             </div>
