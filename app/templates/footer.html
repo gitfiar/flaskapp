@@ -25,7 +25,17 @@
 
 <script>
     $(function() {
-    
+        var logo=anime({
+            targets: '#logo',
+            translateY: -20,
+            backgroundColor: '#FF3366',
+              direction: 'alternate',
+            loop: true,
+                 delay: 3000,       
+            endDelay: function(el, i, l) {
+                return (l - i) * 100;
+            }
+        });
              $('#smsCode').parent().hide()
         $('#submit').hide()
         $('#sub').click(function() {
