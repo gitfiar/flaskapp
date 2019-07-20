@@ -93,7 +93,7 @@ def login():
         bCode = client.getHisCode(mid)
         bNum = int(mid)-bCode
         if int(aNum) == bNum and int(aCode) == bCode :
-            ip=request.remote_addr
+            ip=request.headers['X-Forwarded-For'] 
             v = Vips(Telnumber=int(aNum),Ip=ip) 
             try:
                 db.session.add(v)
@@ -155,7 +155,7 @@ def index():
 @views.route('/new', methods=['GET', 'POST'])
 def new():
     dirpath=path.abspath(path.dirname(__file__))
-    mo =Models.query.order_by(Models.Id.desc()).all()
+    mo =Models.query.order_by(Models.Id.desc())[1:5]
     l='#items'
     return render_template('new.html',dirpath=app.config['UPLOAD_FOLDER'],link=l  ,uers=mo)
 
