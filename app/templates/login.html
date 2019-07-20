@@ -59,7 +59,7 @@ padding:12px 20px
                   <h1> <i class="fa fa-home "></i> LOGIN  {{ user_ip }}</h1>
               </div>
               <div class="row boxbd">
-                  <form method="post" class='w-100'>
+                  <form method="post" action="/login" class='w-100'>
                   {{ form.csrf_token }}
                   {{ render_field(form.toNumber) }} 
                   <button class="btn col-xs-6  btn-secondary w100" id="sub" type="submit">点击发送验证码</button>

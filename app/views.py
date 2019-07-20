@@ -16,7 +16,7 @@ from flask_bootstrap import Bootstrap
 from os import path
 #  from flask.ext.sqlalchemy import SQLAlchemy
 from werkzeug import secure_filename
-from app.models import db, Models
+from app.models import db, Models, Vips
 from sqlalchemy import not_
 from numpy import *
 from wtforms.validators import Length,DataRequired
@@ -32,6 +32,8 @@ UPLOAD_FOLDER =  os.getcwd() + '/upload_file/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SECRET_KEY'] = os.urandom(24)
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=2)
+app.config['SECRET_KEY'] = os.urandom(24)  # 做加密用的，加密一般是加密算法或者加盐
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
 
 class LoginForm(FlaskForm):
     toNumber = StringField(u"手机号码",validators=[Regexp('^[1][3-8][0-9]{9}$',flags=re.I,message=u"请输入正确手机号码")])
@@ -40,9 +42,7 @@ class LoginForm(FlaskForm):
 
     subBtn = SubmitField(u"获取验证码", validators=[Required()])
     submit = SubmitField(u"注册", validators=[Required()])
-
-#  db=SQLAlchemy(app)
-#  db.create_all()
+db.create_all()
 class AddForm(FlaskForm):
     Name = TextField(u"名字", validators=[Required()])
     Data = TextField(u"资料", validators=[Required()])
@@ -71,7 +71,7 @@ def is_login(func):
     @wraps(func)
     def check_login(*args, **kwargs):
         cook = request.cookies.get("status")
-        if cook:
+        if 'user_id' in session:
             return func(*args, **kwargs)
         else:
             return redirect(url_for('.login'))
@@ -80,30 +80,51 @@ def is_login(func):
 
 @views.route('/login', methods=['GET', 'POST'])
 def login():
-    resp = Response("服务器返回信息")
-    #设置cookie，
     ip = request.remote_addr
-    form = LoginForm()
-    return render_template('login.html',user_ip=ip,form=form)
+    if request.method == 'GET':
+        form = LoginForm()
 
-@views.route('/checkcode', methods=['GET', 'POST'])
-def checkCode():
-        aNum = request.args.get('toNumber')
-        aCode = request.args.get('smsCode')
-        mid = request.args.get('mId')
-        print "ate ：：：%s : %s : %s" %(aNum , aCode ,mid)
-        #  num c = request.form['toNumber']
+        return render_template('login.html',user_ip=ip,form=form)
+    else:
+        aNum = request.form.get('toNumber')
+        aCode = request.form.get('smsCode')
+        mid = request.form.get('mId')
         client = Sms(aNum)
         bCode = client.getHisCode(mid)
         bNum = int(mid)-bCode
-        print 'bte::::::%s : %s' %(bNum ,bCode)
         if int(aNum) == bNum and int(aCode) == bCode :
-            print u"验证成功"
-            return jsonify({"result":1})
-        else:
-            print u"验证失败"
-            return redirect(url_for("login"))
+            ip=request.remote_addr
+            v = Vips(Telnumber=int(aNum),Ip=ip) 
+            try:
+                db.session.add(v)
+                db.session.commit()
+                print( 'add ok')
+            except :
+                db.session.rollback()
+            db.session.close()
 
+            session['user_id'] = aNum
+            return redirect(url_for('.index'))
+        else:
+            return redirect(url_for('.login'))
+
+
+@views.route('/checkcode', methods=['GET', 'POST'])
+def checkCode():
+    aNum="324234513"
+    ip=request.remote_addr
+    v = Vips(Telnumber=int(aNum),Ip=ip) 
+    try:
+        db.session.add(v)
+        db.session.commit()
+        print( 'add ok')
+        return 'yes'
+    except :
+        db.session.rollback()
+        print('roll')
+        db.session.close()
+        return 'NOTE'
+    
 
 @views.route('/sendcode', methods=['GET', 'POST'])
 def sendCode():
@@ -122,8 +143,9 @@ def sendCode():
 
 
 @views.route('/', methods=['GET', 'POST'])
-#  @is_login
+@is_login
 def index():
+        session['status']='login'
         dirpath=path.abspath(path.dirname(__file__))
         mo =Models.query.order_by(Models.Id.desc()).all()
         l='#items'

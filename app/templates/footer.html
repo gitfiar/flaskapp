@@ -53,22 +53,7 @@
             }});
         });
 
-        $("#submit").click(function(){
-            var num = $("#toNumber").val();
-            var smsCode=$("#smsCode").val();
-            var mId=$.cookie('mId');
-            $.ajax({url:"/checkcode", data:{"toNumber": num,"mId":mId,"smsCode":smsCode},success:function(data){
-                if(data.result==1){
-                    alert('验证成功')
-                    $.cookie('status','login')
-                    window.location.href='/';
-                }
-                else{
-                    alert('验证错误')
-                }
-            }});
 
-        })
 
     });
 var wow = new WOW({
