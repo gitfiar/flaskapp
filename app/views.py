@@ -80,7 +80,8 @@ def is_login(func):
 
 @views.route('/login', methods=['GET', 'POST'])
 def login():
-    ip = request.remote_addr
+    ips = request.remote_addr if request.remote_addr else request.headers['X-Forwarded-For']
+    ip = ips.split(',',1)[0] if len(ips.split(',',1))>1 else ips
     if request.method == 'GET':
         form = LoginForm()
 
@@ -93,8 +94,8 @@ def login():
         bCode = client.getHisCode(mid)
         bNum = int(mid)-bCode
         if int(aNum) == bNum and int(aCode) == bCode :
-            ip=request.headers['X-Forwarded-For'] 
-            v = Vips(Telnumber=int(aNum),Ip=ip) 
+            i=ip 
+            v = Vips(Telnumber=int(aNum),Ip=i) 
             try:
                 db.session.add(v)
                 db.session.commit()
