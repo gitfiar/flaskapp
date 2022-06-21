@@ -4,7 +4,7 @@ Flask==1.0.2
 Flask_Uploads==0.2.1
 SQLAlchemy==1.2.14
 dominate==2.3.5
-numpy==1.16.2
+numpy==1.22.0
 Flask_WTF==0.14.2
 Werkzeug==0.14.1
 WTForms==2.2.1
